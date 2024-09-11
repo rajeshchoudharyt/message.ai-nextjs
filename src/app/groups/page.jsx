@@ -1,8 +1,10 @@
 "use client";
 
-import CreateGroupForm from "@/components/CreateGroupForm";
-import { useAuth } from "@clerk/nextjs";
 import Link from "next/link";
+import CreateGroupForm from "@/components/CreateGroupForm";
+
+import { env } from "@/utils/config";
+import { useAuth } from "@clerk/nextjs";
 import { notFound } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -13,7 +15,7 @@ export default function Groups() {
 
 	async function get() {
 		const response = await fetch(
-			"http://localhost:3001/groups?userId=" + userId
+			`${env.BACKEND_END_URL}/groups?userId=${userId}`
 		);
 
 		if (!response.ok) return notFound();
@@ -39,17 +41,19 @@ export default function Groups() {
 			</dialog>
 
 			<ul>
-				{groups?.length > 0
-					? groups.map((group) => (
-							<Link
-								key={group.id}
-								className="btn btn-block rounded-none bg-base-100
+				{groups?.length > 0 ? (
+					groups.map((group) => (
+						<Link
+							key={group.id}
+							className="btn btn-block rounded-none bg-base-100
                                             justify-start hover:bg-primary/50"
-								href={`/groups/${group.id}`}>
-								{group.name}
-							</Link>
-					  ))
-					: "No groups"}
+							href={`/groups/${group.id}`}>
+							{group.name}
+						</Link>
+					))
+				) : (
+					<p className="text-center">No groups</p>
+				)}
 			</ul>
 		</main>
 	);

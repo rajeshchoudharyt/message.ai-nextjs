@@ -17,7 +17,7 @@ export default function RootLayout({ children }) {
 			<ClerkProvider>
 				<body className={sans.className}>
 					<Navbar />
-					<main className="fixed top-12">{children}</main>
+					<main className="relative top-12">{children}</main>
 				</body>
 			</ClerkProvider>
 		</html>

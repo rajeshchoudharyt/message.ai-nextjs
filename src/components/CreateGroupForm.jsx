@@ -1,5 +1,6 @@
 "use client";
 
+import { env } from "@/utils/config";
 import { useAuth } from "@clerk/nextjs";
 import { useState } from "react";
 
@@ -15,7 +16,7 @@ export default function CreateGroupForm({ setGroups, dialogRef }) {
 		setLoading(true);
 
 		try {
-			const response = await fetch("http://localhost:3001/groups", {
+			const response = await fetch(`${env.BACKEND_END_URL}/groups`, {
 				method: "POST",
 				body: JSON.stringify({ userId, groupName }),
 			});
@@ -30,7 +31,9 @@ export default function CreateGroupForm({ setGroups, dialogRef }) {
 			if (data) {
 				const { groupId: id, groupName: name } = data;
 				setName("");
-				setGroups((prev) => [...prev, { id, name }]);
+				setGroups((prev) =>
+					prev ? [...prev, { id, name }] : [{ id, name }]
+				);
 				dialogRef.current.close();
 			}
 			//
