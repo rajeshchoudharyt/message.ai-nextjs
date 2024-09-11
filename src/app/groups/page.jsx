@@ -3,7 +3,6 @@
 import Link from "next/link";
 import CreateGroupForm from "@/components/CreateGroupForm";
 
-import { env } from "@/utils/config";
 import { useAuth } from "@clerk/nextjs";
 import { notFound } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -15,7 +14,7 @@ export default function Groups() {
 
 	async function get() {
 		const response = await fetch(
-			`${env.BACKEND_END_URL}/groups?userId=${userId}`
+			`${process.env.BACKEND_URL}/groups?userId=${userId}`
 		);
 
 		if (!response.ok) return notFound();

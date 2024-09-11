@@ -1,7 +1,6 @@
 "use client";
 
 import JoinGroupForm from "@/components/JoinGroupForm";
-import { env } from "@/utils/config";
 import { useAuth } from "@clerk/nextjs";
 import { notFound, usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -38,7 +37,7 @@ export default function Page() {
 
 	function startWebSoocket() {
 		const webSocket = new WebSocket(
-			`${env.BACKEND_END_URL}/message?groupId=${groupId}&userId=${userId}`
+			`${process.env.BACKEND_URL}/message?groupId=${groupId}&userId=${userId}`
 		);
 
 		// webSocket.onopen = () => {
@@ -60,7 +59,7 @@ export default function Page() {
 
 	async function get() {
 		const response = await fetch(
-			`${env.BACKEND_END_URL}/messages?groupId=${groupId}&userId=${userId}`
+			`${process.env.BACKEND_URL}/messages?groupId=${groupId}&userId=${userId}`
 		);
 
 		if (!response.ok) {
@@ -111,7 +110,7 @@ export default function Page() {
 		if (!socket && !socket?.OPEN) return startWebSoocket();
 		setMessage("");
 
-		const response = await fetch(`${env.BACKEND_END_URL}/chat`, {
+		const response = await fetch(`${process.env.BACKEND_URL}/chat`, {
 			method: "POST",
 			body: JSON.stringify({
 				userId,

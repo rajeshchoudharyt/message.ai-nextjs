@@ -1,6 +1,5 @@
 "use client";
 
-import { env } from "@/utils/config";
 import { useAuth } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -15,7 +14,7 @@ export default function JoinGroupForm({ dialogRef, setMessages }) {
 		setLoading(true);
 
 		try {
-			const response = await fetch(`${env.BACKEND_END_URL}/groups`, {
+			const response = await fetch(`${process.env.BACKEND_URL}/groups`, {
 				method: "PATCH",
 				body: JSON.stringify({ userId, groupId }),
 			});
