@@ -1,7 +1,10 @@
-import { Inter } from "next/font/google";
+import Navbar from "@/components/Navbar";
+import { Source_Sans_3 } from "next/font/google";
+import { ClerkProvider } from "@clerk/nextjs";
+
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = Source_Sans_3({ subsets: ["latin"] });
 
 export const metadata = {
 	title: "Message.ai",
@@ -11,7 +14,12 @@ export const metadata = {
 export default function RootLayout({ children }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>{children}</body>
+			<ClerkProvider>
+				<body className={sans.className}>
+					<Navbar />
+					<main className="fixed top-12">{children}</main>
+				</body>
+			</ClerkProvider>
 		</html>
 	);
 }
