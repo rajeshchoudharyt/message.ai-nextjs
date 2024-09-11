@@ -1,5 +1,5 @@
 const env = {
-	BACKEND_END_URL: "http://localhost:3001",
+	BACKEND_END_URL: process.env.BACKEND_END_URL,
 };
 
 export { env };
