@@ -1,4 +1,6 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### A real-time messaging app with features like group chat, chat with AI in group chat, etc.
+
+Backend repository: https://github.com/rajeshchoudharyt/message.ai-fastify
 
 ## Getting Started
 
