@@ -14,7 +14,7 @@ export default function Groups() {
 
 	async function get() {
 		const response = await fetch(
-			`${process.env.BACKEND_URL}/groups?userId=${userId}`
+			`${process.env.NEXT_PUBLIC_BACKEND_URL}/groups?userId=${userId}`
 		);
 
 		if (!response.ok) return notFound();
