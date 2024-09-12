@@ -14,7 +14,7 @@ export default function JoinGroupForm({ dialogRef, setMessages }) {
 		setLoading(true);
 
 		try {
-			const response = await fetch(`${process.env.BACKEND_URL}/groups`, {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/groups`, {
 				method: "PATCH",
 				body: JSON.stringify({ userId, groupId }),
 			});
