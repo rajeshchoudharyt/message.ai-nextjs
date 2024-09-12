@@ -15,7 +15,7 @@ export default function CreateGroupForm({ setGroups, dialogRef }) {
 		setLoading(true);
 
 		try {
-			const response = await fetch(`${process.env.BACKEND_URL}/groups`, {
+			const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/groups`, {
 				method: "POST",
 				body: JSON.stringify({ userId, groupName }),
 			});
